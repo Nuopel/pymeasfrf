@@ -1,0 +1,8 @@
+# ignore pymeasfrf.egg-info
+*.egg-info
+
+# ignore pycache
+__pycache__/
+
+*.wav
+
