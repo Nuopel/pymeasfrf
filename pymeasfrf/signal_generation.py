@@ -219,6 +219,8 @@ def save_object(obj, filename):
     use : obj = load_object(filename) to load back
 
     """    
+    if (filename[-4::] != '.plk') :
+        filename = filename + '.plk'
     with open(filename, 'wb') as outp:  # Overwrites any existing file.
         pickle.dump(obj, outp, pickle.HIGHEST_PROTOCOL)
 
