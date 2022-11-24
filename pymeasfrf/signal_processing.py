@@ -137,6 +137,29 @@ def ri_conv_time(f_end,f_0,time,t_tot,fs,y,x):
 
 
 def freq2time(Q,f_q,M,fs,b = [],a =[],axis = -1,n_ifft = None):
+    '''
+    freq2time(Q,f_q,M,fs,b = [],a =[],axis = -1,n_ifft = None)
+        Convert a frequency signal to a impulse response filter 
+
+        Parameters: 
+                    :param Q: frequency signal vectors to convert (N_channel,N_freq)
+                    :param f_q: frequency vector (N_freq,)
+                    :param M: Number of frequency in the interpolation vector
+                    :param fs: sampling frequency
+                    :param b: b ir/fir filterparameter
+                    :param a: a ir/fir filterparameter
+                    :param axis: axis of fft, default = -1
+                    :param n_ifft: number of point in the ifft
+        Return:
+                    :return ir: impulse response filter (N_channel, ...axis(,N_time))
+                    :return ir_fft: interpolated frequency signal vectors (N_channel, ...axis(,N_freq))
+                    :return f_new: interpolated frequency vector
+
+
+        Author1: Samuel Dupont
+        Date:    Juin 2022
+    '''
+
     M = int(M) # force  to int
 
     if n_ifft == None:
