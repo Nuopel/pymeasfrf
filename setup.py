@@ -1,11 +1,10 @@
 from setuptools import setup
 setup(name='pymeasfrf',
-version='0.1',
-description='1st version of the measurement toolbox',
+version='1',
+description='Unlicenced branch main_al of numerous modules, classes, for acoustic measurement from pymeasfrf main ',
 url='#',
-author='Nuopel',
-author_email='samu.dupont@laposte.net',
-license='GNU General Public License v3.0',
+author='Samuel Dupont',
+author_email='samuel.dupont@arteac-lab.fr',
 packages=['pymeasfrf'],
   install_requires=[
       'sounddevice',
