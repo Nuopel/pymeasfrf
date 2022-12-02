@@ -159,6 +159,10 @@ def freq2time(Q,f_q,M,fs,b = [],a =[],axis = -1,n_ifft = None):
         Author1: Samuel Dupont
         Date:    Juin 2022
     '''
+    from warnings import warn
+
+    def a_deprecated_function():
+        warn('This method is deprecated.', DeprecationWarning, stacklevel=2)
 
     M = int(M) # force  to int
 
@@ -180,7 +184,7 @@ def freq2time(Q,f_q,M,fs,b = [],a =[],axis = -1,n_ifft = None):
         shape2add[axis] = 1
         
         
-        f_q = np.concatenate((np.array([0]),f_q))         
+        f_q = np.concatenate((np.array([0]),f_q))
         Re = np.concatenate(( np.ones(shape2add)*1e-6, Re),axis=axis)
         Im = np.concatenate(( np.ones(shape2add)*1e-6, Im),axis=axis)
         # Re = np.hstack((Re[0], Re))
@@ -190,12 +194,12 @@ def freq2time(Q,f_q,M,fs,b = [],a =[],axis = -1,n_ifft = None):
         shape2add = np.array(Re.shape) # get shape for later reshape (allow axis use)
         shape2add[axis] = 1
     
-        f_q = np.concatenate(( f_q, np.array([fs/2]) ))   
+        f_q = np.concatenate(( f_q, np.array([fs/2]) ))
         Re = np.concatenate((Re, np.ones(shape2add)*1e-6), axis=axis)
         Im = np.concatenate((Im, np.ones(shape2add)*1e-6), axis=axis)
         
-        # Re = np.hstack((Re, Re[-1])) 
-        # Im = np.hstack((Im, Im[-1]))            
+        # Re = np.hstack((Re, Re[-1]))
+        # Im = np.hstack((Im, Im[-1]))
     
 # Interpolation    
     Q_2interp = interp1d(f_q, Re + 1j * Im, kind = 'linear',fill_value = (0,0), bounds_error = False, axis = axis )                      
@@ -229,7 +233,7 @@ def freq2time(Q,f_q,M,fs,b = [],a =[],axis = -1,n_ifft = None):
     # compensate the delay introduced by the filter
     # IR = np.roll(IR , -int(len(b)/2),axis=axis)
 
-    return ir,ir_fft,f_new
+    return ir, ir_fft, f_new
 
 
 
