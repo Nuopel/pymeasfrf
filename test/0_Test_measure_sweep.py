@@ -25,7 +25,7 @@ fs = 48000
 te = 1 / fs
 t_tot = 1
 f_0 = 100
-f_end = 4000
+f_end = 16000
 n_avg = 2  # note that if other than 1 delay of the sound card might mess up the result
 
 sig = ChirpSignal(fs=fs, te=te, t_tot=t_tot, f_0=f_0, f_end=f_end)  # ♣initiate struct
@@ -40,7 +40,7 @@ sig.plot_time_windows
 plt.show()
 
 # %% Detect sound card
-if 1:
+if 0:
 
     print(sd.query_devices())
     print('\n Chose your soundcard : \n')
@@ -50,7 +50,7 @@ if 1:
 
 else:
     # if you know your sound card
-    recsig.select_sound_card(([0, ] * 2), fs=fs)
+    recsig.select_sound_card(([1,3 ] ), fs=fs)
 
 # %% record the signal
 test = True
@@ -81,7 +81,7 @@ plt.title(' Measured signal')
 plt.xlabel('Time (s)')
 plt.ylabel('Amplitude')
 plt.legend()
-
+plt.show()
 # %% processing signal  using A.novak method
 
 n_fft = sig.n_pts * 2
@@ -111,6 +111,7 @@ with np.errstate(divide='ignore'):
     plt.xlabel('Frequency')
     plt.ylabel('dB')
     plt.legend()
+    plt.show()
 
 # %% do the mean
 ri_S_fft_mean = np.mean(ri_S_fft, axis=1)
@@ -130,8 +131,10 @@ with np.errstate(divide='ignore'):
     plt.subplot(212)
     plt.semilogx(f_nfft, 20 * np.log10(abs(ri_S_fft_mean) * 2), '-')
     plt.xlim(1, fs / 2)
-    plt.ylim(-80, 0)
+    # plt.ylim(-80, 0)
 
     plt.title(' Fft mean')
     plt.xlabel('Frequency [Hz]')
     plt.ylabel('dB')
+    plt.show()
+
